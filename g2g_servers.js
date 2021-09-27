@@ -1,21 +1,23 @@
 // ==UserScript==
-// @name         G2G: Antonidas, Argent Dawn, Ravencrest
+// @name         G2G Auto Dump Prices: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.42
+// @version      0.5
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
 // @include      https://www.g2g.com/offer/Ravencrest*
 // @include      https://www.g2g.com/offer/Argent-Dawn*
-// @grant        GM_setValue
-// @grant        GM_getValue
 // ==/UserScript==
 
 (function () {
     "use strict";
+    // pathnames
+    let Antonidas_pathname = "/offer/Antonidas--DE----Alliance";
+    let ArgentDawn_pathname = "/offer/Argent-Dawn--EU----Alliance"
+    let Ravencrest_pathname = "/offer/Ravencrest--EU----Alliance"
+    let Listing_pathname = "?region=41709&service=1&game=2299&type=0&sorting=title%40asc"
     // prices for Antonidas, Argent Dawn, Ravencrest
     function AntonidasCheck() {
-        let Antonidas_pathname = "/offer/Antonidas--DE----Alliance";
         if (location.pathname == Antonidas_pathname) {
             console.log("Server: Antonidas (EU)")
             document.querySelector(
@@ -62,7 +64,6 @@
         }
     };
     function ArgentDawnCheck() {
-        let ArgentDawn_pathname = "/offer/Argent-Dawn--EU----Alliance"
         if (location.pathname == ArgentDawn_pathname) {
             console.log("Server: Argent Dawn (EU)")
             document.querySelector('.title_top-offers.other_seller_header').textContent = "Server: Argent Dawn (EU)";
@@ -99,7 +100,6 @@
         }
     }
     function RavencrestCheck() {
-        let Ravencrest_pathname = "/offer/Ravencrest--EU----Alliance"
         if (location.pathname == Ravencrest_pathname) {
             console.log("Server: Ravencrest (EU)")
             document.querySelector('.title_top-offers.other_seller_header').textContent = "Server: Ravencrest (EU)";
@@ -135,16 +135,14 @@
             }
         }
     }
-    function Servers() {
+    // start check prices
+    window.onload = function () {
         AntonidasCheck()
         ArgentDawnCheck()
         RavencrestCheck()
     }
-    window.onload = Servers()
-
     // update prices
-    function UpdatePrices() {
-        let Listing_pathname = "?region=41709&service=1&game=2299&type=0&sorting=title%40asc"
+    window.onload = function () {
         if (location.search == Listing_pathname) {
             console.log("Обнаружен Manage Listing, начинаю обновлять цены...")
             function AntonidasInput() {
@@ -216,11 +214,7 @@
             window.onload = UpdateListings()
         }
     }
-    window.onload = UpdatePrices()
     // reload pages
-    if (location.pathname == Antonidas_pathname || ArgentDawn_pathname || Ravencrest_pathname) {
-        console.log("Запускаю таймер на 5 минут")
-    }
     setInterval(function () {
         if (location.pathname == Antonidas_pathname) {
             console.log("Antonidas: перезагружаю страницу спустя 5 минут")
@@ -234,5 +228,5 @@
         } else {
             UpdatePrices()
         }
-    }, 325000);
+    }, 60000);
 })();
