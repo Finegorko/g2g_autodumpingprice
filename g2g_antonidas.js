@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G_Antonidas
 // @namespace    http://g2g.com/
-// @version      0.25
+// @version      0.26
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas--DE*
@@ -14,6 +14,7 @@
     function AntonidasPrice() {
         let Antonidas_pn = "/offer/Antonidas--DE----Alliance";
         if (location.pathname == Antonidas_pn) {
+            console.log("Server: Antonidas")
             document.querySelector(
                 ".title_top-offers.other_seller_header"
             ).textContent = "Server: Antonidas (EU)";
