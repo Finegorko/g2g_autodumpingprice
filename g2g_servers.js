@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.30
+// @version      0.31
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
@@ -141,11 +141,11 @@
         RavencrestCheck()
     }
     window.onload = Servers()
-    
+
     // update prices
     function UpdatePrices() {
-        let ManageListing_searchlocation = "?region=41709&service=1&game=2299&type=0&sorting=title%40asc"
-        if (location.search == ManageListing_searchlocation) {
+        let Listing_pathname = "?region=41709&service=1&game=2299&type=0&sorting=title%40asc"
+        if (location.search == Listing_pathname) {
             function AntonidasInput() {
                 let priceListing = document.querySelectorAll('.g2g_products_price.editable.editable-click')[0].textContent;
                 let priceLocal = localStorage.Antonidas_Price;
@@ -204,7 +204,7 @@
                 }
             }
             // таймер на выставление
-            window.onload = function Post() {
+            function UpdateListings() {
                 setTimeout(AntonidasTable, 7000);
                 setTimeout(AntonidasInput, 7500);
                 setTimeout(ArgentDawnTable, 9000);
@@ -212,10 +212,8 @@
                 setTimeout(RavencrestTable, 10000);
                 setTimeout(RavencrestInput, 10500);
             }
-            setInterval(function () {
-                location.reload();
-            }, 300000);
+            window.onload = UpdateListings()
         }
     }
-    setTimeout(UpdatePrices, 5000);
+    window.onload = UpdatePrices()
 })();
