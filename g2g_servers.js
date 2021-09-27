@@ -11,7 +11,7 @@
 // @grant        GM_getValue
 // ==/UserScript==
 
-(function () {F
+(function () {
     "use strict";
     function AntonidasCheck() {
         let Antonidas_pathname = "/offer/Antonidas--DE----Alliance";
