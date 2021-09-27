@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.2
+// @version      0.21
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
@@ -11,7 +11,7 @@
 // @grant        GM_getValue
 // ==/UserScript==
 
-(function () {
+(function () {F
     "use strict";
     function AntonidasCheck() {
         let Antonidas_pathname = "/offer/Antonidas--DE----Alliance";
@@ -63,6 +63,7 @@
     function ArgentDawnCheck() {
         let ArgentDawn_pathname = "/offer/Argent-Dawn--EU----Alliance"
         if (location.pathname == ArgentDawn_pathname) {
+            console.log("Server: Argent Dawn (EU)")
             document.querySelector('.title_top-offers.other_seller_header').textContent = "Server: Argent Dawn (EU)";
             let y = 1; // price N
             let i = 1; // stock N
@@ -99,6 +100,7 @@
     function RavencrestCheck() {
         let Ravencrest_pathname = "/offer/Ravencrest--EU----Alliance"
         if (location.pathname == Ravencrest_pathname) {
+            console.log("Server: Ravencrest (EU)")
             document.querySelector('.title_top-offers.other_seller_header').textContent = "Server: Ravencrest (EU)";
             let y = 1; // price N
             let i = 1; // stock N
