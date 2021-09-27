@@ -8,6 +8,7 @@
 
 (function () {
   'use strict';
+  function UpdatePrices() {
   function AntonidasInput() {
     let priceListing = document.querySelectorAll('.g2g_products_price.editable.editable-click')[0].textContent;
     let priceLocal = localStorage.Antonidas_Price;
@@ -77,4 +78,5 @@
   setInterval(function () {
     location.reload();
   }, 325000);
+}
 })();
