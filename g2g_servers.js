@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G Auto Dump Prices: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.50
+// @version      0.52
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
@@ -11,6 +11,30 @@
 
 (function () {
     "use strict";
+    // reload every 5 min of local time
+    function getLocaltime() {
+        return new Date().getMinutes();
+    }
+    console.log(getLocaltime());
+
+    let minutes = 0
+    while (minutes <= 60) {
+        if (getLocaltime == minutes) {
+            if (location.pathname == Antonidas_pathname) {
+                console.log("Antonidas: перезагружаю страницу спустя 5 минут")
+                location.reload();
+            } else if (location.pathname == ArgentDawn_pathname) {
+                console.log("Argent Dawn: перезагружаю страницу спустя 5 минут")
+                location.reload();
+            } else if (location.pathname == Ravencrest_pathname) {
+                console.log("Ravencrest: перезагружаю страницу спустя 5 минут")
+                location.reload();
+            } else {
+                UpdatePrices()
+            }
+        }
+        minutes = minutes + 5
+    }
     // pathnames
     let Antonidas_pathname = "/offer/Antonidas--DE----Alliance";
     let ArgentDawn_pathname = "/offer/Argent-Dawn--EU----Alliance"
@@ -136,11 +160,7 @@
         }
     }
     // start check prices
-    window.onload = function () {
-        AntonidasCheck()
-        ArgentDawnCheck()
-        RavencrestCheck()
-    }
+    window.onload = AntonidasCheck(), ArgentDawnCheck(), RavencrestCheck()
     // update prices
     window.onload = function () {
         if (location.search == Listing_pathname) {
@@ -228,5 +248,5 @@
         } else {
             UpdatePrices()
         }
-    }, 60000);
+    }, 300000);
 })();
