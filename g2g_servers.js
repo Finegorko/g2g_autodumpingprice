@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.31
+// @version      0.40
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
@@ -146,13 +146,14 @@
     function UpdatePrices() {
         let Listing_pathname = "?region=41709&service=1&game=2299&type=0&sorting=title%40asc"
         if (location.search == Listing_pathname) {
+            console.log("Обнаружен Manage Listing, начинаю обновлять цены...")
             function AntonidasInput() {
                 let priceListing = document.querySelectorAll('.g2g_products_price.editable.editable-click')[0].textContent;
                 let priceLocal = localStorage.Antonidas_Price;
                 if (priceLocal == priceListing) {
-                    console.log("Вы уже перебили лот.")
+                    console.log("Antonidas: Вы уже перебили лот.")
                 } else {
-                    console.log("Меняю цену на", priceLocal)
+                    console.log("Antonidas: Меняю цену на", priceLocal)
                     document.querySelector('.input-large').value = priceLocal;
                     document.querySelector('.btn.btn--green.editable-submit').click();
                 }
@@ -161,9 +162,9 @@
                 let priceListing = document.querySelectorAll('.g2g_products_price.editable.editable-click')[1].textContent;
                 let priceLocal = localStorage.ArgentDawn_Price;
                 if (priceLocal == priceListing) {
-                    console.log("Вы уже перебили лот.")
+                    console.log("Argent Dawn: Вы уже перебили лот.")
                 } else {
-                    console.log("Меняю цену на", priceLocal)
+                    console.log("Argent Dawn: Меняю цену на", priceLocal)
                     document.querySelector('.input-large').value = priceLocal;
                     document.querySelector('.btn.btn--green.editable-submit').click();
                 }
@@ -172,9 +173,9 @@
                 let priceListing = document.querySelectorAll('.g2g_products_price.editable.editable-click')[2].textContent;
                 let priceLocal = localStorage.Ravencrest_Price;
                 if (priceLocal == priceListing) {
-                    console.log("Вы уже перебили лот.")
+                    console.log("Ravencrest: Вы уже перебили лот.")
                 } else {
-                    console.log("Меняю цену на", priceLocal)
+                    console.log("Ravencrest: Меняю цену на", priceLocal)
                     document.querySelector('.input-large').value = priceLocal;
                     document.querySelector('.btn.btn--green.editable-submit').click();
                 }
@@ -216,4 +217,19 @@
         }
     }
     window.onload = UpdatePrices()
+    // reload pages
+    setInterval(function () {
+        if (location.pathname == Antonidas_pathname) {
+            console.log("Antonidas: перезагружаю страницу спустя 5 минут")
+            location.reload();
+        } else if (location.pathname == ArgentDawn_pathname) {
+            console.log("Argent Dawn: перезагружаю страницу спустя 5 минут")
+            location.reload();
+        } else if (location.pathname == Ravencrest_pathname) {
+            console.log("Ravencrest: перезагружаю страницу спустя 5 минут")
+            location.reload();
+        } else {
+            UpdatePrices()
+        }
+    }, 325000);
 })();
