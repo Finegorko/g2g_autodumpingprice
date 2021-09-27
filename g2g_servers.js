@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.41
+// @version      0.42
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
@@ -218,7 +218,9 @@
     }
     window.onload = UpdatePrices()
     // reload pages
-    console.log("Запускаю таймер на 5 минут")
+    if (location.pathname == Antonidas_pathname || ArgentDawn_pathname || Ravencrest_pathname) {
+        console.log("Запускаю таймер на 5 минут")
+    }
     setInterval(function () {
         if (location.pathname == Antonidas_pathname) {
             console.log("Antonidas: перезагружаю страницу спустя 5 минут")
