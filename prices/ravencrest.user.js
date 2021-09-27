@@ -1,12 +1,9 @@
 // ==UserScript==
 // @name         Ravencrest Price
 // @namespace    http://g2g.com/
-// @version      0.1
+// @version      0.2
 // @author       Finegorko
 // @match        https://www.g2g.com/offer/Ravencrest--EU*
-// @downloadURL  http://localhost:8000/price/ravencrest.user.js
-// @require      http://localhost:8000/price/ravencrest.user.js  
-// @grant        none
 // ==/UserScript==
 
 (function () {

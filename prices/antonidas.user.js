@@ -3,10 +3,7 @@
 // @namespace    http://g2g.com/
 // @version      0.1
 // @author       Finegorko
-// @match        https://www.g2g.com/offer/Antonidas--DE*
-// @downloadURL  http://localhost:8000/price/antonidas.user.js
-// @require      http://localhost:8000/price/antonidas.user.js   
-// @grant        none
+// @match        https://www.g2g.com/offer/Antonidas--DE* 
 // ==/UserScript==
 
 (function () {
