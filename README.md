@@ -5,6 +5,6 @@ Features:
 - auto changes prices
 - ignore low stock
 - ignore yourself
-- set timer
+- set timer for listing
 
 If you have suggestions, feel free to pull!
