@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G Auto Dump Prices: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.53
+// @version      0.54
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
@@ -136,7 +136,15 @@
         }
     }
     // start check prices
-    window.onload = AntonidasCheck(), ArgentDawnCheck(), RavencrestCheck()
+    window.onload = function () {
+        if (location.pathname == Antonidas_pathname) {
+            AntonidasCheck()
+        } else if (location.pathname == ArgentDawn_pathname) {
+            ArgentDawnCheck()
+        } else if (location.pathname == Ravencrest_pathname) {
+            RavencrestCheck()
+        }
+    }
     // update prices
     window.onload = function () {
         if (location.search == Listing_pathname) {
