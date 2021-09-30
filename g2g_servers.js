@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G Auto Dump Prices: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.59
+// @version      0.6
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
@@ -144,7 +144,11 @@
             function AntonidasInput() {
                 let priceListing = document.querySelectorAll('.g2g_products_price.editable.editable-click')[0].textContent;
                 let priceLocal = localStorage.Antonidas_Price;
-                if (priceLocal == priceListing) {
+                let status = document.querySelectorAll('.products__description')[0].childNodes[3].innerText
+                let deactivated = "Status:\nDeactivated"
+                if (status == deactivated) {
+                    console.log("Antonidas: Пропускаю, лот деактивирован.")      
+                } else if (priceLocal == priceListing) {
                     console.log("Antonidas: Вы уже перебили лот.")
                 } else {
                     console.log("Antonidas: Меняю цену на", priceLocal)
@@ -158,7 +162,7 @@
                 let status = document.querySelectorAll('.products__description')[1].childNodes[3].innerText
                 let deactivated = "Status:\nDeactivated"
                 if (status == deactivated) {
-                    console.log("Argent Dawn: Deactivated.")      
+                    console.log("Argent Dawn: Пропускаю, лот деактиврован.")      
                 } else if (priceLocal == priceListing) {
                     console.log("Argent Dawn: Вы уже перебили лот.")
                 } else {
@@ -170,7 +174,11 @@
             function RavencrestInput() {
                 let priceListing = document.querySelectorAll('.g2g_products_price.editable.editable-click')[2].textContent;
                 let priceLocal = localStorage.Ravencrest_Price;
-                if (priceLocal == priceListing) {
+                let status = document.querySelectorAll('.products__description')[2].childNodes[3].innerText
+                let deactivated = "Status:\nDeactivated"
+                if (status == deactivated) {
+                    console.log("Ravencrest: Пропускаю, лот деактиврован.")      
+                } else if (priceLocal == priceListing) {
                     console.log("Ravencrest: Вы уже перебили лот.")
                 } else {
                     console.log("Ravencrest: Меняю цену на", priceLocal)
