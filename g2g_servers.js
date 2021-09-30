@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G Auto Dump Prices: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.56
+// @version      0.58
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
@@ -155,8 +155,12 @@
             function ArgentDawnInput() {
                 let priceListing = document.querySelectorAll('.g2g_products_price.editable.editable-click')[1].textContent;
                 let priceLocal = localStorage.ArgentDawn_Price;
+                let status = document.querySelectorAll('.products__description')[1].childNodes[3].innerText
+                let deactivated = "Status:\nDeactivated"
                 if (priceLocal == priceListing) {
                     console.log("Argent Dawn: Вы уже перебили лот.")
+                } else if (status == deactivated) {
+                    console.log("Deactivated.")
                 } else {
                     console.log("Argent Dawn: Меняю цену на", priceLocal)
                     document.querySelector('.input-large').value = priceLocal;
