@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G Auto Dump Prices: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.70
+// @version      0.71
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
@@ -17,12 +17,12 @@
     let Ravencrest_pathname = "/offer/Ravencrest--EU----Alliance"
     let Listing_pathname = "?region=41709&service=1&game=2299&type=0&sorting=title%40asc"
     // prices for Antonidas, Argent Dawn, Ravencrest
-    function AntonidasCheck() {
-        if (location.pathname == Antonidas_pathname) {
-            console.log("Server: Antonidas (EU)")
-            document.querySelector(
-                ".title_top-offers.other_seller_header"
-            ).textContent = "Server: Antonidas (EU)";
+    if (location.pathname == Antonidas_pathname) {
+        console.log("Server: Antonidas (EU)")
+        document.querySelector(
+            ".title_top-offers.other_seller_header"
+        ).textContent = "Server: Antonidas (EU)";
+        function AntonidasCheck() {
             let y = 1; // price N
             let i = 1; // stock N
             let done = 0; // while
@@ -62,11 +62,11 @@
                 }
             }
         }
-    };
-    function ArgentDawnCheck() {
-        if (location.pathname == ArgentDawn_pathname) {
-            console.log("Server: Argent Dawn (EU)")
-            document.querySelector('.title_top-offers.other_seller_header').textContent = "Server: Argent Dawn (EU)";
+    }
+    if (location.pathname == ArgentDawn_pathname) {
+        console.log("Server: Argent Dawn (EU)")
+        document.querySelector('.title_top-offers.other_seller_header').textContent = "Server: Argent Dawn (EU)";
+        function ArgentDawnCheck() {
             let y = 1; // price N
             let i = 1; // stock N
             let done = 0 // while
@@ -99,10 +99,10 @@
             }
         }
     }
-    function RavencrestCheck() {
-        if (location.pathname == Ravencrest_pathname) {
-            console.log("Server: Ravencrest (EU)")
-            document.querySelector('.title_top-offers.other_seller_header').textContent = "Server: Ravencrest (EU)";
+    if (location.pathname == Ravencrest_pathname) {
+        console.log("Server: Ravencrest (EU)")
+        document.querySelector('.title_top-offers.other_seller_header').textContent = "Server: Ravencrest (EU)";
+        function RavencrestCheck() {
             let y = 1; // price N
             let i = 1; // stock N
             let done = 0 // while
@@ -136,9 +136,15 @@
         }
     }
     // start check prices
-    window.onload = AntonidasCheck(), ArgentDawnCheck(), RavencrestCheck()
+    if (location.pathname == Antonidas_pathname) {
+        AntonidasCheck()
+    } else if (location.pathname == ArgentDawn_pathname) {
+        ArgentDawnCheck()
+    } else if (location.pathname == Ravencrest_pathname) {
+        RavencrestCheck()
+    }
     // update prices
-    window.onload = function UpdatePrices() {
+    function UpdatePrices() {
         if (location.search == Listing_pathname) {
             console.log("Обнаружен Manage Listing, начинаю обновлять цены...")
             function AntonidasInput() {
@@ -147,7 +153,7 @@
                 let status = document.querySelectorAll('.products__description')[0].childNodes[3].innerText
                 let deactivated = "Status:\nDeactivated"
                 if (status == deactivated) {
-                    console.log("Antonidas: Пропускаю, лот деактивирован.")      
+                    console.log("Antonidas: Пропускаю, лот деактивирован.")
                 } else if (priceLocal == priceListing) {
                     console.log("Antonidas: Вы уже перебили лот.")
                 } else {
@@ -162,7 +168,7 @@
                 let status = document.querySelectorAll('.products__description')[1].childNodes[3].innerText
                 let deactivated = "Status:\nDeactivated"
                 if (status == deactivated) {
-                    console.log("Argent Dawn: Пропускаю, лот деактиврован.")      
+                    console.log("Argent Dawn: Пропускаю, лот деактиврован.")
                 } else if (priceLocal == priceListing) {
                     console.log("Argent Dawn: Вы уже перебили лот.")
                 } else {
@@ -177,7 +183,7 @@
                 let status = document.querySelectorAll('.products__description')[2].childNodes[3].innerText
                 let deactivated = "Status:\nDeactivated"
                 if (status == deactivated) {
-                    console.log("Ravencrest: Пропускаю, лот деактиврован.")      
+                    console.log("Ravencrest: Пропускаю, лот деактиврован.")
                 } else if (priceLocal == priceListing) {
                     console.log("Ravencrest: Вы уже перебили лот.")
                 } else {
