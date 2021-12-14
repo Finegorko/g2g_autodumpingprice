@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         G2G Auto Dump Prices: Antonidas, Argent Dawn, Ravencrest
 // @namespace    http://g2g.com/
-// @version      0.77
+// @version      0.78
 // @author       Finegorko
 // @include      https://www.g2g.com/sell/manage?region=41709&service=1&game=2299&type=0&sorting=title%40asc
 // @include      https://www.g2g.com/offer/Antonidas*
@@ -11,7 +11,7 @@
 
 (function () {
     "use strict";
-    // pathnames
+    // pathnames hello
     let Antonidas_pathname = "/offer/Antonidas--DE----Alliance";
     let ArgentDawn_pathname = "/offer/Argent-Dawn--EU----Alliance"
     let Ravencrest_pathname = "/offer/Ravencrest--EU----Alliance"
