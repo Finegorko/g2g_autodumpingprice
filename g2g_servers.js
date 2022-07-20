@@ -201,7 +201,7 @@
                 document.getElementById('c2c_9003201').querySelector('.g2g_products_price.editable.editable-click').click();
             }
         }
-        // таймер на в  ыставление
+        // таймер на выставление
         function UpdateListings() {
             setTimeout(AntonidasTable, 7000);
             setTimeout(AntonidasInput, 7500);
